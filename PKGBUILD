@@ -1,15 +1,14 @@
-# Maintainer: TF <mail | at | sedi [DOT] one>
-pkgname=('kesl' 'kesl-gui')
+# Maintainer: copycat <simakr2512 | at | yandex [DOT] ru>
+pkgname=('kesl')
 pkgver=12.0.0.6672
-_pkgver_gui=12.0.0.6672
 _pkgverbuild=$(echo ${pkgver} | cut -d "." -f 4)
 _pkgver=$(echo ${pkgver} | cut -d "." -f 1-3)
-pkgrel=1
+pkgrel=2
 arch=('x86_64')
 pkgdesc='Kaspersky Endpoint Security 12.0.0 for Linux'
 url='https://support.kaspersky.com/KES4Linux/12.0.0/en-US/245017.htm'
 license=('custom')
-noextract=("kesl_${_pkgver}-${_pkgverbuild}_amd64.deb" "kesl-gui_${_pkgver}-${_pkgverbuild}_amd64.deb")
+noextract=("kesl_${_pkgver}-${_pkgverbuild}_amd64.deb")
 depends=('perl')
 options=("!strip")
 conflicts=( 'eea'
@@ -20,14 +19,12 @@ install=${pkgname}.install
 changelog=${pkgname}.changelog
 
 source=( "https://products.s.kaspersky-labs.com/endpoints/keslinux10/${pkgver}/multilanguage-${pkgver}/3739343634317c44454c7c31/kesl_${_pkgver}-${_pkgverbuild}_amd64.deb"
-         "https://products.s.kaspersky-labs.com/endpoints/keslinux10/${pkgver}/multilanguage-${_pkgver_gui}/3739343633387c44454c7c31/kesl-gui_${_pkgver}-${_pkgverbuild}_amd64.deb"
          "${pkgname}.install"
          "kesl.ini"
          "kesl.start.conf")
 sha256sums=('cf124a7dcb0c70dd85503fa250737bc981ff56630a891710dbc579e239d153b2'
-            '9b066af7d150c599c952e4002ed7b04905be0aba15992a3e2190e5b045332552'
-            '695023473d087c9d641240b16e4a9d2c74c811b4d2c7fb018425170927b7439c'
-            '86203f1dcd663763bc9c8d51a98e510523189c7e78a7fb293183095b89bfa6cf'
+            '8c9d5d13277b107dbd6b5b902e075630519d5457bbe2c6f259515f3405345796'
+            '72899f7a8d5c63e1541762603cf6fc1a05a9114c60a529e7b18bac2b334040f1'
             '29efcd166bb0fc5baa5a85dc0f41c6c2e253f6b8fd3ee723862496364281cb4c')
 validpgpkeys=('6AFE173577C4CBD621DF217FD093435AA3ED2C4A')
 
@@ -70,40 +67,6 @@ package_kesl() {
     # install startup config
     cp kesl.start.conf ${pkgdir}/var/opt/kaspersky/kesl/pkgscripts/
     sed -i "s/@PKGVER@/$pkgver/g" ${pkgdir}/var/opt/kaspersky/kesl/pkgscripts/kesl.start.conf
-}
-
-package_kesl-gui(){
-    pkgdesc='Kaspersky Endpoint Security 12.0.0 for Linux (GUI)'
-    depends=('kesl' 'freetype2' 'qt5-svg')
-    install=${pkgname}.install
-
-    KESLIDIR=${pkgdir}/var/opt/kaspersky/kesl/install_${pkgver}
-
-    bsdtar -xf kesl-gui_${_pkgver}-${_pkgverbuild}_amd64.deb
-    bsdtar -xf data.tar.xz -C ${pkgdir}/
-
-    [ ! -d "${pkgdir}/var/opt/kaspersky/kesl-gui/pkgscripts" ] && mkdir -p ${pkgdir}/var/opt/kaspersky/kesl-gui/pkgscripts
-    bsdtar -xf control.tar.gz -C ${pkgdir}/var/opt/kaspersky/kesl-gui/pkgscripts
-
-    chmod 711 ${pkgdir}/var/opt/kaspersky/kesl/install_${pkgver}/opt/ \
-        ${pkgdir}/var/opt/kaspersky/kesl/install_${pkgver}/opt/kaspersky \
-        ${pkgdir}/var/opt/kaspersky/kesl/install_${pkgver}/opt/kaspersky/kesl/ \
-        ${pkgdir}/var/opt/kaspersky/kesl/install_${pkgver}/opt/kaspersky/kesl/shared/loc/
-
-    chmod 511 ${pkgdir}/var/opt/kaspersky/kesl/ \
-        ${pkgdir}/var/opt/kaspersky/kesl/install_${pkgver} \
-        ${pkgdir}/var/opt/kaspersky/kesl/install_${pkgver}/opt/kaspersky/kesl/bin/ \
-        ${pkgdir}/var/opt/kaspersky/kesl/install_${pkgver}/opt/kaspersky/kesl/lib64/ \
-        ${pkgdir}/var/opt/kaspersky/kesl/install_${pkgver}/opt/kaspersky/kesl/libexec/ \
-        ${pkgdir}/var/opt/kaspersky/kesl/install_${pkgver}/opt/kaspersky/kesl/shared/ \
-        ${pkgdir}/var/opt/kaspersky/kesl/install_${pkgver}/opt/kaspersky/kesl/shared/init/storage/
-
-    chmod 500 ${pkgdir}/var/opt/kaspersky/kesl/install_${pkgver}/opt/kaspersky/kesl/shared/init/
-
-    mkdir -p ${pkgdir}/usr/share/kio/servicemenus/
-    mv ${pkgdir}/usr/share/kservices5/ServiceMenus/kaspersky-kesl.desktop ${pkgdir}/usr/share/kio/servicemenus/kaspersky-kesl.desktop
-    rmdir ${pkgdir}/usr/share/kservices5/ServiceMenus
-    rmdir ${pkgdir}/usr/share/kservices5
 }
 
 

@@ -1,3 +1,5 @@
+GUI has been split into different PKGBUILD here: https://github.com/SimakR/arch_kesl-gui
+
 # About
 
 Arch package for Kaspersky Endpoint Security for Linux (KESL)
