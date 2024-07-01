@@ -1,7 +1,7 @@
 pkgbase = kesl
 	pkgdesc = Kaspersky Endpoint Security 12.0.0 for Linux
 	pkgver = 12.0.0.6672
-	pkgrel = 4
+	pkgrel = 2
 	url = https://support.kaspersky.com/KES4Linux/12.0.0/en-US/245017.htm
 	install = kesl.install
 	changelog = kesl.changelog
@@ -13,25 +13,15 @@ pkgbase = kesl
 	conflicts = eea-dkms
 	conflicts = eea7-dkms
 	noextract = kesl_12.0.0-6672_amd64.deb
-	noextract = kesl-gui_12.0.0-6672_amd64.deb
 	options = !strip
 	source = https://products.s.kaspersky-labs.com/endpoints/keslinux10/12.0.0.6672/multilanguage-12.0.0.6672/3739343634317c44454c7c31/kesl_12.0.0-6672_amd64.deb
-	source = https://products.s.kaspersky-labs.com/endpoints/keslinux10/12.0.0.6672/multilanguage-12.0.0.6672/3739343633387c44454c7c31/kesl-gui_12.0.0-6672_amd64.deb
 	source = kesl.install
 	source = kesl.ini
 	source = kesl.start.conf
 	validpgpkeys = 6AFE173577C4CBD621DF217FD093435AA3ED2C4A
 	sha256sums = cf124a7dcb0c70dd85503fa250737bc981ff56630a891710dbc579e239d153b2
-	sha256sums = 9b066af7d150c599c952e4002ed7b04905be0aba15992a3e2190e5b045332552
-	sha256sums = 695023473d087c9d641240b16e4a9d2c74c811b4d2c7fb018425170927b7439c
-	sha256sums = 86203f1dcd663763bc9c8d51a98e510523189c7e78a7fb293183095b89bfa6cf
+	sha256sums = 8c9d5d13277b107dbd6b5b902e075630519d5457bbe2c6f259515f3405345796
+	sha256sums = 72899f7a8d5c63e1541762603cf6fc1a05a9114c60a529e7b18bac2b334040f1
 	sha256sums = 29efcd166bb0fc5baa5a85dc0f41c6c2e253f6b8fd3ee723862496364281cb4c
 
 pkgname = kesl
-
-pkgname = kesl-gui
-	pkgdesc = Kaspersky Endpoint Security 12.0.0 for Linux (GUI)
-	install = kesl-gui.install
-	depends = kesl
-	depends = freetype2
-	depends = qt5-svg
