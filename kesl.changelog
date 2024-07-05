@@ -1,38 +1,28 @@
-﻿Kaspersky Endpoint Security 12.0 for Linux (12.0.0.6672) RELEASE NOTES
+﻿Kaspersky Endpoint Security 12.1 for Linux (12.1.0.1274) RELEASE NOTES
 ==============================================================================
-Version release date: 11/30/2023
+Version release date: June 28, 2024
 
 Contents:
 	* What's new
 	* System requirements
 	* Installing and updating the application
 	* Known limitations and issues
-	Sources of information about the application
+	* Sources of information about the application
 
 
 What's new
 --------------------------------------------------------------------------------
-Kaspersky Endpoint Security 12.0 for Linux (hereinafter also referred to as Kaspersky Endpoint Security) has the following new features and improvements:
-	* Kaspersky Endpoint Security can now be used in one of the following two modes: Light Agent mode for protecting virtual environments, or Standalone mode. When running in Light Agent mode for protecting virtual environments, the application is used as a Light Agent component within Kaspersky Security for Virtualization Light Agent and lets you protect virtual machines running Linux guest operating systems. When running in Standalone mode, Kaspersky Endpoint Security is used as a standalone application for protecting devices running Linux operating systems.
-	* The Kaspersky Endpoint Detection and Response (KATA) Integration task has new response actions intended to support security functions according to commands received from Kaspersky Anti Targeted Attack Platform, such as the Delete File task, Terminate Process task, IOC Scan task, and the capability to enable network isolation for a device
-	* The application restarts automatically when updating via the command line or automatic patching. When updating, the application now automatically restarts to save the administrator the additional step of restarting the application.
-	* The logic for saving information to dump files has been improved. The application settings configuration file now includes settings for defining the directory for storing dump files and the minimum required free disk space after creating dump files.
-	* The general application settings now provide the capability to define a limit for processor resource usage. In addition, the ScanPriority setting was removed from the following types of scan tasks: ODS, Inventory, Container Scan, and Custom Container Scan.
-	* Kaspersky Endpoint Security can now run in cloud mode. If Kaspersky Endpoint Security is running in Standalone mode (not in Light Agent mode) and you are using KSN in the application, you can enable cloud mode for the application. If cloud mode is enabled, Kaspersky Endpoint Security uses a lightweight version of the malware databases. This helps reduce consumption of device RAM.
-	* You can now configure the application running in Standalone mode to communicate directly with KSN servers when the KSN Proxy service is unavailable.
-	* User event notifications have been improved by adding new events, refining the text of events, expanding the list of event attributes, and standardizing the events in plug-ins and in the command line.
-	* The application's initial configuration procedure has new steps related to the new capability for selecting the Light Agent mode and checking for users in privileged groups, and the mechanism for checking the availability of SELinux in the system has been improved.
-	* The configuration file used for automated initial configuration of the application now has a setting that lets you disable protection components and scan tasks when starting the application after installation. Installing the application with protection components disabled can be convenient, for example, in order to reproduce a problem in the operation of the application and create a trace file.
-	* You can now use unique combinations of tags to specify a container or image to expand the protection scope and exclusion scope for File Threat Protection.
-	* Device Control has been improved. You can now export and import a list of trusted devices in Kaspersky Endpoint Security administration plug-ins. The MMC plug-in interface for this component was also improved.
-	* You can now export and import exclusions for processes of the Behavior Detection task in Kaspersky Endpoint Security administration plug-ins.
-	* The graphical user interface can now notify the user about the operation of application components and tasks in Notify-only mode. If the application is running in Notify-only mode and a threat is detected, application components and tasks do not attempt to disinfect or delete malicious objects, deny access or block the activity of programs. Instead, the application only informs the user about the detected threat. The administration plug-ins now display a notification when Notify-only mode is enabled for the File Threat Protection and Device Control components.
-	* You can now view the log for remote installation of the application and manage the tracing process in the Web Console in the properties of a managed device or in the Administration Console by using the remote diagnostics utility.
-	* In the Kaspersky Endpoint Security administration plug-in, under Storages -> Backup, you can now send a file to Kaspersky so that the file can be scanned.
-	* Requests are now handled faster by the Web Threat Protection task by caching the processes that initiated these requests.
-	* The total wait time when copying files has been reduced by caching the function call used to get the user name.
-	* In new Linux kernels (beginning with version 3.4), you can now read the memory of processes without stopping them, thereby improving stability. Processes are no longer suspended when scanning memory. This reduces delays in services that ensure uninterrupted data processing, including for software that organizes the operation of clusters.
-	* The REST API for managing a KESL container now lets you request information about the current state of the KESL container and the application state parameters that impact the state of the KESL container (state of the application, license, and databases).
+Kaspersky Endpoint Security 12.1 for Linux (hereinafter also referred to as Kaspersky Endpoint Security) has the following new features and improvements:
+	* Now you can set up integration with Kaspersky Endpoint Detection and Response Optimum, which protects the organization’s IT infrastructure from threats such as exploits, ransomware, fileless attacks and attackers' use of legitimate system tools to harm devices or data.
+	* Now you can add two active license key to the application: the main key for activating the application and an additional key for activating the Kaspersky Endpoint Detection and Response Optimum functionality. The additional key is required if your main license does not include the Kaspersky Endpoint Detection and Response Optimum functionality.
+	* Added a new Web Control component, which controls user access to web resources. This allows you to reduce traffic consumption and reduce inappropriate use of working time. If a user tries to open a website to which access is restricted by Web Control, Kaspersky Endpoint Security blocks access or displays a warning.
+	* The newly added Kaspersky Endpoint Security stability monitoring functionality allows you to track the number of times the application terminates abnormally and notify the administrator about the unstable operation of the application.
+	* The procedure for installing Kaspersky Endpoint Security using the Kaspersky Security Center Web Console has been improved: in the properties of the application installation package, you can now specify initial configuration parameters that were previously available only in the autoinstall.ini configuration file.
+	* More application settings can be specified using the Kaspersky Security Center Web Console and the Kaspersky Security Center Administration Console: you can edit settings that previously could be set only on the command line.
+	* Now you can enable or disable global exclusions and File Threat Protection exclusions when running scan tasks.
+	* Now you can set up integration with Kaspersky Symphony XDR: if the Kaspersky Endpoint Security application is being used in standard mode, the application can perform the "Start Malware Scan" and "Database update" response actions. If Kaspersky Endpoint Security is being used in Light Agent mode, integration with Kaspersky Symphony XDR is not supported.
+	* Now you can send information about all devices installed in client devices or connected to them (including those installed and connected previously but currently disconnected) to the Administration Server when the application is managed using Kaspersky Security Center.
+	* Traffic interception rules have been improved to support the interaction of containers on the same network.
 	* Updated the list of supported operating systems.
 
 
@@ -45,21 +35,20 @@ Minimum hardware requirements:
 	* 4 GB of free hard disk space for installation of the application and storage of temporary and log files
 
 Minimum hardware requirements for the Arm architecture:
-	* ARMv8.2-A Kunpeng 920 or ARMv8-A Baikal-M (BE-M1000) processor or m-TrusT Terminal
+	* Armv8.2-A Kunpeng 920 or Armv8-A Baikal-M (BE-M1000) processor or m-TrusT Terminal
 	* swap partition at least 1 GB
 	* 2 GB of RAM
 	* 3 GB of free hard disk space for installation of the application and storage of temporary and log files
 
 Supported operating systems:
 	32-bit operating systems:
-		* CentOS 6.7 and later
 		* Debian GNU / Linux 11.0 and later
 		* Debian GNU / Linux 12.0 and later
 		* Mageia™ 4
-		* Red Hat® Enterprise Linux® 6.7 and later
-		* ALT 8 SP Workstation
-		* ALT 8 SP Server
+		* ALT 8 SP Workstation (8.4)
+		* ALT 8 SP Server (8.4)
 		* ALT SP Workstation 10
+		* ALT SP Server 10
 	Supported 64-bit operating systems:
 		* AlmaLinux OS 8 and later
 		* AlmaLinux OS 9 and later
@@ -70,14 +59,14 @@ Supported operating systems:
 		* Astra Linux Special Edition RUSB.10015-01 (operational update 1.6)
 		* Astra Linux Special Edition RUSB.10015-01 (operational update 1.7)
 		* Astra Linux Special Edition RUSB.10015-16 (release 1) (operational update 1.6)
-		* CentOS 6.7 and later
+		The Astra Linux operating system in the "Mobile" mode is only supported on tablet computers (tablets) in desktop mode.
 		* CentOS 7.2 and later
 		* CentOS Stream 8
 		* CentOS Stream 9
 		* Debian GNU / Linux 11.0 and later
 		* Debian GNU / Linux 12.0 and later
 		* EMIAS 1.0
-		* EulerOS 2.0 SP5
+		* EulerOS 2.0 SP10
 		* Kylin 10
 		* LinuxMint 20.3 and later
 		* LinuxMint 21.1 and later
@@ -85,27 +74,32 @@ Supported operating systems:
 		* Oracle Linux 7.3 and later
 		* Oracle Linux 8.0 and later
 		* Oracle Linux 9.0 and later
-		* Red Hat Enterprise Linux 6.7 and later
 		* Red Hat Enterprise Linux 7.2 and later
 		* Red Hat Enterprise Linux 8.0 and later
 		* Red Hat Enterprise Linux 9.0 and later
 		* Rocky Linux 8.5 and later
 		* Rocky Linux 9.1
 		* SberLinux 8.8 (Dykhtau)
+		* SberOS 3.2.0
 		* SUSE Linux Enterprise Server 12.5 and later
 		* SUSE Linux Enterprise Server 15 and later
 		* Ubuntu® 20.04 LTS
 		* Ubuntu 22.04 LTS
-		* ALT 8 SP Workstation
-		* ALT 8 SP Server
+		* Ubuntu 24.04 LTS
+		* ALT 8 SP Workstation (8.4)
+		* ALT 8 SP Server (8.4)
+		* ALT Education 10.1
+		* ALT Workstation 10.1
+		* ALT Server 10.1
 		* ALT SP Workstation 10
 		* ALT SP Server 10
 		* Atlant, Alcyone build, version 2022.02
 		* GosLinux 7.17
 		* GosLinux 7.2
-		MSVSPHERE 9.2 SERVER
-		MSVSPHERE 9.2 WORKSTATION
+		* MSVSPHERE 9.2 WORKSTATION
+		* MSVSPHERE 9.2 SERVER
 		* RED OS® 7.3
+		* RED OS® 8.0
 		* ROSA Cobalt 7.9
 		* ROSA Chrome 12
 		* SyntezM-Client 8.6
@@ -113,33 +107,37 @@ Supported operating systems:
 	64-bit operating systems for the Arm architecture:
 		* Astra Linux Special Edition RUSB.10152-02 (operational update 4.7)
 		* CentOS Stream 9
-		* EulerOS 2.0 SP8
+		* EulerOS 2.0 SP10
 		* SUSE Linux Enterprise Server 15
 		* Ubuntu 22.04 LTS
+		* ALT 8 SP Workstation (8.4)
+		* ALT 8 SP Server (8.4)
+		* ALT SP Workstation 10
 		* ALT Server 10
 		* RED OS 7.3
 
 Due to technical limitations of fanotify, the application does not support the following file systems: autofs, binfmt_misc, cgroup, configfs, debugfs, devpts, devtmpfs, fuse, fuse.gvfsd-fuse, gfs2, gvfs, hugetlbfs, mqueue, nfsd, proc, parsecfs, pipefs, pstore, usbfs, rpc_pipefs, securityfs, selinuxfs, sysfs, tracefs.
 
 Kaspersky Endpoint Security is compatible with the following Kaspersky Security Center versions:
-	* Kaspersky Security Center 13.2 The MMC administration plug-in can be used to administer Kaspersky Endpoint Security via Administration Console.
+	* Kaspersky Security Center 13.2. The MMC administration plug-in can be used to administer Kaspersky Endpoint Security via Administration Console.
 	* Kaspersky Security Center 14. Kaspersky Endpoint Security can be administered through Administration Console using the MMC administration plug-in and through Kaspersky Security Center Web Console using the web administration plug-in.
-	* Kaspersky Security Center 14 Linux. The web administration plug-in can be used to administer Kaspersky Endpoint Security through Kaspersky Security Center Web Console. Some functionality of Kaspersky Security Center 14, e.g. features tied to Kaspersky Security Network, are unavailable in Kaspersky Security Center 14 Linux. You can manage Kaspersky Security Network usage through Kaspersky Security Center running on Windows.
-	* Kaspersky Security Center 14.2. Kaspersky Endpoint Security can be administered through Administration Console using the MMC administration plug-in and through Kaspersky Security Center Web Console using the web administration plug-in.
+	* Kaspersky Security Center 14.2 Windows. Kaspersky Endpoint Security can be administered through Administration Console using the MMC administration plug-in and through Kaspersky Security Center Web Console using the web administration plug-in.
 	* Kaspersky Security Center 14.2 Linux. The web administration plug-in can be used to administer Kaspersky Endpoint Security through Kaspersky Security Center Web Console.
 	* Kaspersky Security Center 15 Linux. The web administration plug-in can be used to administer Kaspersky Endpoint Security through Kaspersky Security Center Web Console.
+	* Kaspersky Security Center 15.1 Linux. The web administration plug-in can be used to administer Kaspersky Endpoint Security through Kaspersky Security Center Web Console.
 If Kaspersky Endpoint Security is being used in Light Agent mode for protecting virtual environments (as part of Kaspersky Security for Virtualization Light Agent ), you are advised to use the following versions of Kaspersky Security Center to manage the application:
-	* Kaspersky Security Center 14.2.
+	* Kaspersky Security Center 14.2 Windows.
 	* Kaspersky Security Center 15 Linux.
+	* Kaspersky Security Center 15.1 Linux.
 You can also manage the application using the Kaspersky Security Center Cloud Console.
 
-Additional system requirements are described in the online help in the "Preparing for application installation" section: https://support.kaspersky.com/KES4Linux/12.0.0/en-US/248502.htm
+Additional system requirements are described in the online help in the "Preparing for application installation" section: https://support.kaspersky.com/KES4Linux/12.1.0/en-US/264265.htm
 
 
 Installing and updating the application
 --------------------------------------------------------------------------------
-The preparation required to install the application is described in the online help at https://support.kaspersky.com/KES4Linux/12.0.0/en-US/248502.htm
-Installation and update of the application are described in the online help at https://support.kaspersky.com/KES4Linux/12.0.0/en-US/248501.htm and https://support.kaspersky.com/KES4Linux/12.0.0 /en-US/246380.htm
+The preparation required to install the application is described in the online help at https://support.kaspersky.com/KES4Linux/12.1.0/en-US/264265.htm
+Installation and update of the application are described in the online help at https://support.kaspersky.com/KES4Linux/12.1.0/en-US/263902.htm and https://support.kaspersky.com/KES4Linux/12.1.0/en-US/263930.htm
 
 After an update, Kaspersky Endpoint Security for Linux starts, even if it was stopped before the update process.
 
@@ -176,9 +174,6 @@ Possible solution: remove the block of the SMB protocol for the mounted SMB part
 * 3163038. When the value of the SizeLimit setting is changed from the command line, the current value is not changed until the application restarts.
 Possible solution: restart the application after changing this setting.
 
-* 3307326. The klnagent-astra package cannot be removed by Kaspersky Security Center tools.
-Possible solution: remove the package manually from the command line.
-
 * 3734131. In the Red Hat Enterprise Linux 8 operating system, firewall is managed through the iptables-legacy package.
 Possible solution: do not use nftables to manage the firewall rules.
 
@@ -196,20 +191,11 @@ A possible solution is described in the Red Hat Knowledge Base article, "SMB: Pr
 * 4326124. When the Container Scan general settings indicate the "Stop" action for a container (OnAccessContainerScanAction=StopContainer), the container may not be stopped if the File Threat Protection task has detected and removed a threat on the host before scanning the container. In this case, the File Threat Protection task does not detect this threat in the container during scan, and the container is not stopped.
 Possible solution: when using "union filesystems aufs" and "overlay", the application scans the files twice (the first time at the host filesystem level, and the second time at the union filesystem level). To improve performance, we recommend to add the container storage directory of the host filesystem (usually the /var/lib/docker or /var/lib/containers/storage directory) to the exclusions of the File Threat Protection task.
 
-* 4686247. When the application is running on the Red Hat Enterprise Linux 6.7 operating systems, the Network Threat Protection task does not start.
-Possible solution: disable IPv6 addressing support using the ipv6.disable=1 kernel parameter and restart the operating system.
-
-* 4730506. When the application is running on systems that require a kernel interceptor module (redirfs), the GPFS file system is excluded from scans.
-
-* Application Control does not work if the application is installed on the operating systems that do not support fanotify technology.
-
 * 5028782. If KPSN is disabled in the Administration Server settings, the KSN participation settings specified in the policy are not passed to users' computers when they are synchronized with the Administration Server.
 To pass the KSN participation settings, manually apply or activate the Kaspersky Endpoint Security policy.
 
 * 5559498. If Kaspersky Endpoint Security is integrated with Kaspersky Managed Detection and Response, a large number of events may be written to the systemd log.
 If you want to disable the logging of audit events to the systemd log, disable the systemd-journald-audit socket and restart the operating system.
-
-* 5496016. In rare cases, when working with the NFS3 protocol on operating systems of the CentOS 6 family, the Anti-Cryptor task cannot block access of a remote computer performing malicious encryption to the network file resources.
 
 * 5975779. The Anti-Cryptor task may not work correctly for mounted network directories if encryption protection is enabled on the computer where the directory is located and on the computers where the directory is mounted.
 
@@ -217,7 +203,7 @@ If you want to disable the logging of audit events to the systemd log, disable t
 
 * 5903222. When the application is restarted during an update performed through Kaspersky Security Center, an application startup error message may appear. Despite this, the application starts successfully.
 
-* 6331238. An installation package for Kaspersky Endpoint Security 12.0 for Linux cannot be configured in Kaspersky Security Center Web Console versions lower than 14.2.
+* 6331238. An installation package for Kaspersky Endpoint Security 12.1 for Linux cannot be configured in Kaspersky Security Center Web Console versions lower than 14.2.
 Possible solution: use the autoinstall.ini configuration file to configure settings.
 
 * 6343154. The Web Threat Protection and Network Threat Protection tasks do not work on operating systems whose kernels do not support the TPROXY mode in netfilter.
@@ -252,15 +238,15 @@ kernel.perf_event_paranoid=1
 * 6483701. In some operating systems, the auditd configuration has the rule "-a never,task", which restricts the collection of telemetry when the application is integrated with Kaspersky Endpoint Detection and Response (KATA) and with Kaspersky Managed Detection and Response.
 Possible solution: comment out this rule in the files named /etc/audit/audit.rules and /etc/audit/rules.d/audit.rules, and restart auditd.
 
-* 6672124. For some files, the "Object processing error" event does not display information about the container that resulted in a scan error.
-
 * 6665443. In the Kaspersky Endpoint Security administration web plug-in and in the command line, you can create multiple schedules with identical names for Device Control and thereby cause this component to run incorrectly. You must define unique names for schedules.
+
+* 6672124. For some files, the "Object processing error" event does not display information about the container that resulted in a scan error.
 
 * 6736331. When the Kaspersky Endpoint Detection and Response (KATA) Integration task (KATAEDR, ID:24) is started for the first time with the default settings immediately after the application is installed, you may see a false notification informing you that the task failed to start twice when it actually only failed once.
 
-* 6738598. The Md5Hash, Sha256Hash and UniqueFileId fields are absent from the PasswordProtectedArchiveDetected and PackedObjectDetected events.
+* 6738598. The Md5Hash, Sha256Hash, and UniqueFileId fields are missing in the PasswordProtectedArchiveDetected and PackedObjectDetected events.
 
-* 6765890. When creating or editing a policy in Web Console version 14.2.20222, if you re-open the schedule addition form after adding schedules, the schedules that you just added are not displayed for the Device Control component. They will be displayed on the form only after you save the policy.
+* 6765890. When creating or editing a policy in Web Console 14.2.20222, if you add schedules and then re-open the form for adding schedules, the newly added schedules are not displayed for the Device Control component. They will be displayed on the form only after you save the policy.
 
 * 6809584. In the EulerOS 2.0 SP5 operating system, Device Control does not block access to devices that are connected to a client device via a serial port.
 
@@ -272,27 +258,48 @@ Possible solution: for cgroup v1 to work, you need to rebuild the operating syst
 * 6944839. If multiple policies are created consecutively in the New Policy Wizard in the Web Console, the window for selecting the application operating mode may disappear. However, you can still configure the settings in the policy properties.
 Possible solution: refresh the browser page.
 
-* 6981176. In Kaspersky Endpoint Security 12.0 for Linux, the path to the directory containing the application databases was changed from /var/opt/kaspersky/kesl/common/updates to /var/opt/kaspersky/kesl/private/updates. For a KESL container to operate correctly, you must specify the new path to the directory when defining mount points for startup of the KESL container.
-
 * 7026498. When installing the application in Astra Linux Special Edition in closed software environment mode using a remote installation package with integrated databases, the application is installed without the databases.
 Possible solution: when preparing an installation package with integrated databases, use the databases from a previously installed Astra Linux Special Edition system (from the /var/opt/kaspersky/kesl/private/updates/ directory). Put them into the /i386/, /x86_64/, or /arm64/ subdirectory depending on the specific architecture and pack them into an archive named kesl-bases.tgz.
+
+* 7039109. In the Web Console, when loading a trusted certificate after displaying its properties, you need to check its validity period. If it expires later than January 19, 2038, an error occurs in klopenapi when you save the policy.
+
+* 7048381. On devices with operating systems based on Linux kernel versions lower than 5.0, Application Control may incorrectly detect application starts and may block the activity of an allowed process (for example, when downloading files and libraries).
+Possible solution: if events about blocking of such processes occur, we recommend to add the files of such processes to the list of allowed applications.
+
+* 7100103. If the initial configuration of the application in Light Agent mode was performed incorrectly or not completely, the policy may fail.
+Possible solution: complete the policy configuration in the "Light Agent mode" section. For example, under "SVM discovery settings", you can select the "Use a custom list of SVM addresses" option and specify 127.0.0.1 or any valid IP address. You can also revert to a previous version of a policy, or delete it and rebuild it.
+
+* 7330976. In some cases, an enabled Web Threat Protection task may block the network after the laptop operating system wakes up from hibernation.
+Possible solution: restart the application.
+
+* 7473779. In the Web Console for Kaspersky Security Center 15.0, you cannot simultaneously add new scan scopes and edit existing scan scopes.
+Possible solution: add and edit scan scopes one at a time, saving changes after each operation.
+
+* 7528290. In Web Console for Kaspersky Security Center 15.0, when you hover over buttons, tooltips for buttons are displayed, showing IDs of the controls.
+
+* 7549743. For correct operation of the "Enable application stability monitoring" check box in administration plug-ins, after selecting the check box and saving changes to policies, you must restart the application and Network Agent.
+
+* 7593092. With the AlterOS operating system, ThreatDetected and ObjectDeleted events may be duplicated for the Behavior Detection task.
+
+* 7601998. In the GUI, when a key is added again using the same activation code, the following error message is displayed: "key expires earlier than the active key" instead of "this license key is already being used on the device".
+
+* 7628101. In ODS tasks, multiple ObjectNotDisinfected events may be published during a scan, as a result of individual task actions and as the final result of the scan. See the Reason field for more information.
 
 * When using Kaspersky Endpoint Security for Linux in Light Agent mode, the following limitations apply:
 	•	Using Kaspersky Endpoint Security for Linux in Light Agent mode is not supported:
 		•	on operating systems for the Arm architecture
-		•	on Astra Linux operating systems in mandatory access control and closed software environment modes
-	•	Managing the application using Kaspersky Security Center Cloud Console is not available
-	•	Managing the application using the graphical user interface is not available
-	•	The KESL container functionality is not supported
+		•	on Astra Linux operating systems in mandatory access control and closed software environment modes.
+	•	Managing the application using Kaspersky Security Center Cloud Console is not available.
+	•	Managing the application using the graphical user interface is not available.
+	•	The KESL container functionality is not supported.
 
 
 Sources of information about the application
 --------------------------------------------------------------------------------
-Application page on the Kaspersky website: https://www.kaspersky.com/small-to-medium-business-security/endpoint-linux
-Application page on the Technical Support website (Knowledge Base): https://support.kaspersky.com/kes-for-linux/12?page=kb
-Online help: https://support.kaspersky.com/KES4Linux/12.0.0/en-US/245017.htm
+Application page on the Technical Support website (Knowledge Base): https://support.kaspersky.com/kes-for-linux/12.1?page=kb
+Online help: https://support.kaspersky.com/KES4Linux/12.1.0/en-US/263901.htm
 Kaspersky forum: https://forum.kaspersky.com/
-As new information becomes available, the Release Notes will be updated and posted online: https://support.kaspersky.com/help/KES4Linux/ReleaseNotes/12.0.0/en-US/ (the link will be available after the commercial release).
+As new information becomes available, the Release Notes will be updated and posted online: https://support.kaspersky.com/help/KES4Linux/ReleaseNotes/12.1.0/en-US/ (the link will be available after the commercial release).
 
 
-© 2023 AO Kaspersky Lab.
+© 2024 AO Kaspersky Lab.
