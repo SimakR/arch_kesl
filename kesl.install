@@ -41,10 +41,10 @@ remove_tmp(){
 # extending the following func:
 man_pre(){
     # man pages
-    cp /var/opt/kaspersky/kesl/install_12.1.0.1274/opt/kaspersky/kesl/libexec/symlinks/man $KTMP/
-    sed -i 's#usr/local/#usr/#g' /var/opt/kaspersky/kesl/install_12.1.0.1274/opt/kaspersky/kesl/libexec/symlinks/man
+    cp /var/opt/kaspersky/kesl/install_12.1.0.1297/opt/kaspersky/kesl/libexec/symlinks/man $KTMP/
+    sed -i 's#usr/local/#usr/#g' /var/opt/kaspersky/kesl/install_12.1.0.1297/opt/kaspersky/kesl/libexec/symlinks/man
 
-    for sl in $(cat /var/opt/kaspersky/kesl/install_12.1.0.1274/opt/kaspersky/kesl/libexec/symlinks/man);do
+    for sl in $(cat /var/opt/kaspersky/kesl/install_12.1.0.1297/opt/kaspersky/kesl/libexec/symlinks/man);do
         sld=$(dirname $sl)
         [ ! -d $sld ] && mkdir -p $sld
     done
@@ -52,7 +52,7 @@ man_pre(){
 
 man_post(){
     # revert man pages symlinks
-    cp $KTMP/man /var/opt/kaspersky/kesl/install_12.1.0.1274/opt/kaspersky/kesl/libexec/symlinks/man
+    cp $KTMP/man /var/opt/kaspersky/kesl/install_12.1.0.1297/opt/kaspersky/kesl/libexec/symlinks/man
     [ -d "/opt/kaspersky/kesl/libexec/symlinks" ] && cp $KTMP/man /opt/kaspersky/kesl/libexec/symlinks/man
 }
 
@@ -134,7 +134,7 @@ post_install(){
 
     # manually add the link to /opt (really wondering why this is not covered
     # anywhere but likely I am blind:
-    ln -s /var/opt/kaspersky/kesl/install_12.1.0.1274/opt/kaspersky/kesl /opt/kaspersky/
+    ln -s /var/opt/kaspersky/kesl/install_12.1.0.1297/opt/kaspersky/kesl /opt/kaspersky/
 
     # exec the debian package postinst
     /var/opt/kaspersky/kesl/pkgscripts/postinst configure
