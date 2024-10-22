@@ -1,6 +1,6 @@
 # Maintainer: copycat <simakr2512 | at | yandex [DOT] ru>
 pkgname=('kesl')
-pkgver=12.1.0.1297
+pkgver=12.1.0.1508
 _pkgverbuild=$(echo ${pkgver} | cut -d "." -f 4)
 _pkgver=$(echo ${pkgver} | cut -d "." -f 1-3)
 pkgrel=1
@@ -20,12 +20,12 @@ changelog=${pkgname}.changelog
 
 #https://www.kaspersky.com/small-to-medium-business-security/downloads/endpoint?utm_content=downloads
 #They always change that "3837323739337c44454c7c31" thing so there is no point of generating download link based on pkg version
-source=( "https://products.s.kaspersky-labs.com/endpoints/keslinux10/12.1.0.1297/multilanguage-12.1.0.1297/3837323739337c44454c7c31/kesl_12.1.0-1297_amd64.deb"
+source=( "https://products.s.kaspersky-labs.com/endpoints/keslinux10/12.1.0.1508/multilanguage-12.1.0.1508/3931313439317c44454c7c31/kesl_12.1.0-1508_amd64.deb"
          "${pkgname}.install"
          "kesl.ini"
          "kesl.start.conf")
-sha256sums=('ee96a6082803159c03c884f4280e515bfd33152d8252204f0ee56619ebf37326'
-            'a06d3ae77c91c3f00347289e5f33e47796b0eb9949b2f9d418dc98c5c5b4316b'
+sha256sums=('801fb6db64774a980a645d516abccd374c994999195abd0a716a035d5ee4d39b'
+            '94515968102ea87e7720bfdadb7a5fb58afadd7922d54aec6d8ae7b292940c65'
             '72899f7a8d5c63e1541762603cf6fc1a05a9114c60a529e7b18bac2b334040f1'
             '29efcd166bb0fc5baa5a85dc0f41c6c2e253f6b8fd3ee723862496364281cb4c')
 validpgpkeys=('6AFE173577C4CBD621DF217FD093435AA3ED2C4A')
